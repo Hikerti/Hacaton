@@ -321,7 +321,7 @@ legend {
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.159);
     font-size: 24px;
-    margin-right: 70px;
+    margin-right: 80px;
     padding-left: 50px;
 }
 
@@ -615,5 +615,5 @@ legend {
 }
 
 .lopa__margin {
-    margin-right: 270px;
+    margin-right: 280px;
 }
