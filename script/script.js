@@ -5,8 +5,9 @@ const button__slider__1 = document.querySelector('#button__slider__1');
 const button__slider__2 = document.querySelector('#button__slider__2');
 const container__cards = document.querySelector('.container__cards');
 const container__card = document.querySelectorAll('.container__card');
-
-
+const logo = document.querySelector('.img_1');
+const header = document.querySelector('.header');
+const header__nav = document.querySelector('.container__header__media__nav');
 
 const arrCards = [
     {
@@ -90,11 +91,26 @@ button__animation.addEventListener('click', () => {
     }
 })
 
+let visibleCards = 0;
 let currentIndex = 0;
-const visibleCards = 5;
 const totalCards = arrCards.length;
-const cardWidth = 260; 
+const cardWidth = 280; 
 const maxTotal = totalCards - visibleCards;
+
+const windowWidth = () => {
+    const windowScreen = window.screen.width;
+    for (i = 1; i < 7; i++)
+    if (windowScreen > cardWidth * i && windowScreen < cardWidth * i+1) {
+        visibleCards = i;
+    }
+    return visibleCards;
+}
+
+window.onresize = () => {
+    windowWidth();
+}
+
+windowWidth();
 
 function updateSliderPosition() {
     if (currentIndex < 0) {
@@ -102,7 +118,7 @@ function updateSliderPosition() {
     } else if (currentIndex > maxTotal) {
         currentIndex = maxTotal;
     }
-    container__cards.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+    container__cards.scrollTo(currentIndex * cardWidth, 0)
 }
 
 
@@ -116,3 +132,13 @@ button__slider__2.addEventListener('click', () => {
     updateSliderPosition();
 });
 
+logo.addEventListener('click', () => {
+    if (header.style.height === 60 + 'px') {
+        header.style.height = 120 + 'px';
+        header__nav.style.display = 'flex';
+    }
+    else {
+        header.style.height = 60 + 'px';
+        header__nav.style.display = 'none';
+    }
+})
