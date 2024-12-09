@@ -259,7 +259,7 @@ legend {
 .header__container {
     display: flex;
     align-items: center;
-
+    height: 60px;
 }
 
 .header__container__search {

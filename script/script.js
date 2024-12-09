@@ -95,22 +95,19 @@ let visibleCards = 0;
 let currentIndex = 0;
 const totalCards = arrCards.length;
 const cardWidth = 280; 
-const maxTotal = totalCards - visibleCards;
 
 const windowWidth = () => {
     const windowScreen = window.screen.width;
-    for (i = 1; i < 7; i++)
-    if (windowScreen > cardWidth * i && windowScreen < cardWidth * i+1) {
-        visibleCards = i;
-    }
-    return visibleCards;
+    const screenCard = Math.trunc(windowScreen / cardWidth);
+    const maxTotal = totalCards - screenCard;
+    return maxTotal;
 }
+
+let maxTotal = windowWidth();
 
 window.onresize = () => {
     windowWidth();
 }
-
-windowWidth();
 
 function updateSliderPosition() {
     if (currentIndex < 0) {
@@ -128,9 +125,11 @@ button__slider__1.addEventListener('click', () => {
 });
 
 button__slider__2.addEventListener('click', () => {
+    console.log(currentIndex);
     currentIndex++;
     updateSliderPosition();
 });
+
 
 logo.addEventListener('click', () => {
     if (header.style.height === 60 + 'px') {
